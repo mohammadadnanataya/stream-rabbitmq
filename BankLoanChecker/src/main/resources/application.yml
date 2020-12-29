@@ -1,0 +1,15 @@
+spring:
+  rabbitmq:
+    addresses: amqps://ovuuxdgy:VnHmKmLYq_8Y7QY0HIr8D2ySQfZdOrgI@jellyfish.rmq.cloudamqp.com/ovuuxdgy
+  cloud:
+    stream:
+      bindings:
+        orderChannel:
+          destination: loan.order
+          group: pending
+        approved:
+          destination: loan.approved
+        declined:
+          destination: loan.declined
+server:
+  port: 9090

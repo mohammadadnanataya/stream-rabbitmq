@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>RabbitMQ: Loan Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Loan Details</h1>
+    <p th:text="'Name: ' + ${loan.name}" />
+    <p th:text="'Mail: ' + ${loan.mail}" />
+    <p th:text="'Phone: ' + ${loan.phone}" />
+    <p th:text="'Loan amount: ' + ${loan.loan_amount}" />    
+    <h2>Result:</h2>
+    <p>The order was successfully delivered to RabbitMQ.</p>
+    <a href="/order">Submit another order</a>
+</body>
+</html>

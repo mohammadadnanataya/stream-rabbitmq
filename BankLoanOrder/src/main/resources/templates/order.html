@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>RabbitMQ: Loan Order</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Form Loan Order</h1>
+    <form action="#" th:action="@{/order}" th:object="${loan}" method="post">
+        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p>Mail: <input type="text" th:field="*{mail}" /></p>
+        <p>Phone: <input type="text" th:field="*{phone}" /></p>
+        <p>Loan amount: <input type="number" th:field="*{loan_amount}" style="width: 80px;" /></p>
+        <input type="submit" value="Submit" style="padding: 3px; margin-left: 55px;" />
+    </form>
+</body>
+</html>
