@@ -8,8 +8,20 @@ spring:
           destination: loan.order
           group: pending
         approved:
-          destination: loan.approved
+          destination: loan.checker
         declined:
-          destination: loan.declined
+          destination: loan.checker
+        statusChannel:
+          destination: loan.result
+      rabbit:
+        bindings:
+          approved:
+            producer:
+              exchangeType: topic
+              routingKeyExpression: '"approved"'
+          declined:
+            producer:
+              exchangeType: topic
+              routingKeyExpression: '"declined"'
 server:
   port: 9090

@@ -6,11 +6,8 @@ spring:
       bindings:
         orderChannel:
           destination: loan.order
-        approved:
-          destination: loan.checker
-          group: approved
-        declined:
-          destination: loan.checker
-          group: declined
+        statusChannel:
+          destination: loan.result
+          group: status
 server:
   port: 8080

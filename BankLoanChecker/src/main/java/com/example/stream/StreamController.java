@@ -34,10 +34,14 @@ public class StreamController {
         if (loan.getLoan_amount() <= MAX_AMOUNT) {
             Message<Loan> checker = MessageBuilder.withPayload(loan).build();
             this.checker.approved().send(checker);
+            Message<String> result = MessageBuilder.withPayload(loan.getName() + " is approved").build();
+            this.checker.status().send(result);
         }
         else {
             Message<Loan> checker = MessageBuilder.withPayload(loan).build();
             this.checker.declined().send(checker);
+            Message<String> result = MessageBuilder.withPayload(loan.getName() + " is declined").build();
+            this.checker.status().send(result);
         }
     }
     
@@ -48,6 +52,7 @@ interface LoanChecker {
     String ORDER_IN = "orderChannel";
     String APPROVED_OUT = "approved";
     String DECLINED_OUT = "declined";
+    String STATUS_OUT = "statusChannel";
 
     @Input(ORDER_IN)
     SubscribableChannel order();
@@ -57,5 +62,8 @@ interface LoanChecker {
 
     @Output(DECLINED_OUT)
     MessageChannel declined();
+    
+    @Output(STATUS_OUT)
+    MessageChannel status();
 
 }

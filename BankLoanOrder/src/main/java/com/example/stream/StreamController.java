@@ -45,14 +45,9 @@ public class StreamController {
         return "result";
     }
     
-    @StreamListener(target = "approved")
-    public void approvedLoan(Loan loan) {
-        System.out.println("Loan Status (" + loan.getName() + ") is approved");
-    }
-    
-    @StreamListener(target = "declined")
-    public void declinedLoan(Loan loan) {
-        System.out.println("Loan Status (" + loan.getName() + ") is declined");
+    @StreamListener(target = "statusChannel")
+    public void loanStatus(String status) {
+        System.out.println("Loan Status: " + status);
     }
     
 }
@@ -60,16 +55,12 @@ public class StreamController {
 interface LoanOrder {
     
     String ORDER_OUT = "orderChannel";
-    String APPROVED_IN = "approved";
-    String DECLINED_IN = "declined";
+    String STATUS_IN = "statusChannel";
     
     @Output(ORDER_OUT)
     MessageChannel order();
     
-    @Input(DECLINED_IN)
-    SubscribableChannel declined();
-    
-    @Input(APPROVED_IN)
-    SubscribableChannel approved();
+    @Input(STATUS_IN)
+    SubscribableChannel status();
     
 }
